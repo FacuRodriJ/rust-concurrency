@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  dev:
+    image: rust:latest
+    container_name: rust
+    volumes:
+      - ./rust_app:/rust_app
