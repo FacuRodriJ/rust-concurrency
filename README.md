@@ -12,8 +12,8 @@ Para ejecutar este programa, es necesario tener instalados los siguientes requis
 
 ## Preparación del Entorno
 
-1. Clonar este repositorio: `git clone https://github.com/tu-usuario/tu-repositorio.git`
-2. Abrir el proyecto en Visual Studio Code: `cd tu-repositorio && code .`
+1. Clonar este repositorio: `git clone https://github.com/FacuRodriJ/rust-concurrency.git`
+2. Abrir el proyecto en Visual Studio Code: `cd rust-concurrency && code .`
 
 ## Caso Práctico
 
