@@ -16,15 +16,31 @@ de Rust, que espera a que un hilo termine antes de continuar con la ejecución.
 */
 
 extern crate reqwest;
+/* 
+La biblioteca reqwest es una biblioteca de cliente HTTP de código abierto para Rust.
+La biblioteca reqwest proporciona una API de alto nivel para hacer solicitudes HTTP y 
+manejar respuestas HTTP.
+*/
 extern crate csv;
+/*
+La biblioteca csv es una biblioteca de código abierto para leer y escribir datos en formato CSV.
+*/
 
 use std::fs::File;
 use std::io::prelude::*;
-use serde_json::Value;
 use std::path::Path;
 use std::thread;
 
+use serde_json::Value;
+/*
+La biblioteca serde_json es una biblioteca de código abierto para serializar y
+deserializar datos en formato JSON.
+*/
+
 fn main() {
+    // Imprimir tiempo de ejecución
+    let start = std::time::Instant::now();
+
     let path = Path::new("data");
     if !path.exists() {
         std::fs::create_dir_all(&path).unwrap();
@@ -61,9 +77,17 @@ fn main() {
     municipios_handle.join().unwrap();
     departamentos_handle.join().unwrap();
     localidades_handle.join().unwrap();
+
+    println!("Tiempo de ejecución: {:?}", start.elapsed());
 }
 
 #[tokio::main]
+/*
+La biblioteca tokio proporciona un conjunto de bibliotecas de bajo nivel
+para escribir aplicaciones asincrónicas en Rust.
+En este caso, se utiliza para realizar solicitudes HTTP de forma asincrónica debido a que
+la biblioteca reqwest es asincrónica.
+*/
 async fn get_municipios(url: &str) -> Result<(), Box<dyn std::error::Error>> {
     // Fetch the JSON data from the URL
     let response = reqwest::get(url).await?;
